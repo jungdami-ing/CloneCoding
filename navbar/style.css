@@ -1,0 +1,112 @@
+:root {
+  --text-color: #f0f4f5;
+  --background-color: #263343;
+  --accent-color: #d49466;
+}
+
+* {
+  /* Tells the browser to account for any border and 
+    padding in the values you specify for an element's 
+    width and height. 
+    박스모델에 패팅과 보더의 사이즈를 아이템 너비와 높이에 포함해 달라고 말하는 것 */
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* navbar 위 원하지 않는 스페이싱이 들어가서 그걸 없애기 위해 마진을 0으로 준다. */
+  font-family: "Source Sans Pro";
+}
+
+a {
+  /* 모든 앵커태그에 기본적으로 들어가있는 데코레이션을 없애준다. */
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.navbar {
+  display: flex; /* 아이템들을 한 줄에 나란히 나오게 하는 설정 */
+  justify-content: space-between; /* 같은 중심축에서 스페이스를 넣어준다 */
+  align-items: center; /* 아이템들을 수직적으로 중간에 배치하고 싶을 때 */
+  background-color: var(--background-color);
+  padding: 8px 12px; /* 양 옆이 모서리에 너무 붙어서 양 옆에 스페이싱 만들어주기 */
+}
+
+.navbar__logo {
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+.navbar__logo i {
+  color: var(--accent-color);
+}
+
+.navbar__menu {
+  display: flex; /* 리스트 한 줄에 세우기 */
+  list-style: none; /* 리스트모양의 닷 꾸밈새 없애기 */
+  padding-left: 0; /* 리스트들을 중간에 위치시키기 */
+}
+
+.navbar__menu li {
+  padding: 8px 12px; /* 패딩으로 조절하면 박스 안에서 조절되기 때문에 클릭할 수 있는 영역이 넓어진다. 마진을 넣으면 클릭할 수 있는 범위가 작아진다. */
+}
+
+.navbar__menu li:hover {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+.navbar__icons {
+  display: none;
+  list-style: none;
+  color: var(--text-color);
+  display: flex;
+  padding-left: 0;
+}
+
+.navbar__icons li {
+  padding: 8px 12px;
+}
+
+.navbar__toggleBtn {
+  display: none;
+  position: absolute;
+  right: 32px;
+  font-size: 24px;
+  color: var(--accent-color);
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+  }
+
+  .navbar__menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar__menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar__icons {
+    display: none;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .navbar__toggleBtn {
+    display: block;
+  }
+
+  .navbar__menu.active,
+  .navbar__icons.active {
+    display: flex;
+  }
+}
